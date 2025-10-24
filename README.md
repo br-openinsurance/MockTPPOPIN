@@ -25,20 +25,15 @@ aws.local
    ```
 
 2. **Configure the application keys**
-   Replace the placeholder key and certificate files in the keys/ directory with the correct ones:
+   Replace the placeholder key and certificate files in the keys/ folder with the correct ones for your organization in the Directory:
    ```
    keys/tpp_client_signing.key    ←  rtssigning.key
    keys/tpp_client_transport.crt  ←  brcac.pem
    keys/tpp_client_transport.key  ←  brcac.key
    ```
-   You can request these files from the team leads or retrieve them from the `tf-mock-tpp-deployment` repository.
 
 3. **Run the services**
 
    ```bash
    make run
    ```
-
-## Running dev and sandbox
-
-To run Mock TPP using the dev or sandbox environments (without the local mock), change the values for `DirectoryIssuer` and `DirectoryAPIHost` in `cmd/server/main.go` to the commented ones.

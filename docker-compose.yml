@@ -1,0 +1,61 @@
+services:
+
+  mocktpp:
+    build:
+      context: .
+      dockerfile: cmd/server/Dockerfile
+    environment:
+      - ENV=LOCAL
+      - AWS_REGION=us-east-1
+    depends_on:
+      aws:
+        condition: service_healthy
+
+  mockgw:
+    build:
+      context: .
+      dockerfile: cmd/mockgw/Dockerfile
+    volumes:
+      - ./testdata/:/testdata:ro
+      - ./keys/:/keys:ro
+    ports:
+      - 443:443
+    networks:
+      default:
+        aliases:
+          - mocktpp.local
+          - directory.local
+          - matls-directory.local
+
+  aws:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=iam,ssm,dynamodb
+      - AWS_ACCESS_KEY_ID="test"
+      - AWS_SECRET_ACCESS_KEY="test"
+      - DEBUG=1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./testdata/setup-localstack.sh:/etc/localstack/init/ready.d/setup.sh:ro
+      - ./keys/:/keys:ro
+    healthcheck:
+      test: bash -c 'awslocal ssm get-parameter --name /mocktpp/ready >/dev/null 2>&1'
+      interval: 5s
+      timeout: 10s
+      retries: 10
+    networks:
+      default:
+        aliases:
+          - aws.local
+
+  certmaker:
+    profiles:
+      - build-only
+    build:
+      context: .
+      dockerfile: cmd/certmaker/Dockerfile
+    volumes:
+      - ./keys:/app/keys

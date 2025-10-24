@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Error - Mock TPP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+  {{if .FlowID}}
+  <script src="/static/js/log.js" nonce="{{ .Nonce }}"></script>
+  {{end}}
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-6" {{if .FlowID}}data-flow-id="{{ .FlowID }}"{{end}}>
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-[#0F570D] mb-4">Erro</h1>
+
+    <div class="bg-white border border-gray-200 rounded-lg p-6 mb-6 shadow">
+      <div class="flex items-start">
+        <div class="ml-3">
+          <h3 class="text-lg font-semibold text-[#0F570D]">Ocorreu um erro</h3>
+          <div class="mt-2 text-sm text-gray-700">
+            <p>{{ .Error }}</p>
+          </div>
+          {{if .InteractionID}}
+          <div class="mt-2 text-sm text-gray-700">
+            <p>Interaction ID: {{ .InteractionID }}</p>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+
+    {{if .FlowID}}
+    <section class="mt-8">
+      <div class="bg-white shadow rounded-lg p-6 space-y-6">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-semibold text-[#0F570D]">Logs</h2>
+          <p class="text-gray-600 mb-8">Acompanhe aqui o histórico de execução do fluxo</p>
+        </div>
+
+        <div id="logs-container" class="border border-gray-200 rounded-md overflow-hidden">
+          <div class="grid grid-cols-12 h-96">
+            <!-- Sidebar -->
+            <aside id="logs-list" class="col-span-4 border-r border-gray-200 overflow-y-auto"></aside>
+            <!-- Detail -->
+            <main id="logs-detail" class="col-span-8 overflow-y-auto p-4 text-sm text-gray-800">Selecione um log.</main>
+          </div>
+        </div>
+
+        <div id="logs-controls" class="flex items-center gap-2">
+          <button id="logs-copy" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Copiar JSON</button>
+          <button id="logs-copy-all" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Copiar Tudo</button>
+          <button id="logs-reload" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Carregar Logs</button>
+          <span id="logs-status" class="text-xs text-gray-500"></span>
+        </div>
+      </div>
+    </section>
+    {{end}}
+
+    <!-- Navigation -->
+    <div class="mt-6">
+      <a href="/servers" class="text-sm text-[#0F570D] hover:underline">&larr; Voltar para os servidores de autorização</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Participants - Mock OPIN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold text-[#0F570D] mb-10">Servidores de Autorização</h1>
+    <p class="text-gray-600 mb-8">Aqui está a lista de todos os servidores de autorização das organizações que você faz parte. Para iniciar, selecione qual servidor deseja usar</p>
+
+    {{if .Participants}}
+      <div class="space-y-10">
+        {{range $participant := .Participants}}
+          <div class="bg-white shadow rounded-lg p-6">
+            <div class="mb-4">
+              <div class="text-xl font-semibold text-[#0F570D]">Organização: {{$participant.Name}}</div>
+              <div class="text-sm text-gray-500">ID: {{$participant.OrgID}}</div>
+            </div>
+
+            {{if $participant.AuthServers}}
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {{range $participant.AuthServers}}
+                  <a
+                    href="/servers/{{$participant.OrgID}}/{{.ID}}/flows"
+                    class="block card border border-gray-200 rounded-lg p-4 shadow-sm transition hover:shadow-md"
+                  >
+                    <div class="font-semibold text-gray-800 mb-1">{{.Name}}</div>
+                    <div class="text-sm text-gray-500 truncate">{{.OpenIDConfigURL}}</div>
+                  </a>
+                {{end}}
+              </div>
+            {{else}}
+              <div class="text-sm text-gray-400">Nenhum servidor de autorização encontrado.</div>
+            {{end}}
+          </div>
+        {{end}}
+      </div>
+    {{else}}
+      <div class="text-gray-500">Nenhuma organização encontrada.</div>
+    {{end}}
+  </div>
+</body>
+<script nonce="{{ .Nonce }}">
+  (function () {
+  const backTarget = "/servers"; // where you want Back to land
+  const currentUrl = location.pathname + location.search + location.hash;
+
+  // Run only once per browser session
+  if (!sessionStorage.getItem("hist_rewired")) {
+    // Make the previous entry be your chosen page…
+    history.replaceState({ fromAuth: true }, "", backTarget);
+    // …then put the real current URL back on top.
+    history.pushState({ fromAuth: true }, "", currentUrl);
+    sessionStorage.setItem("hist_rewired", "1");
+  }
+
+  // If you also need to clean query params (code/state), do it *now* with replaceState,
+  // not before the two lines above.
+  // history.replaceState(history.state, "", cleanedUrl);
+})();
+</script>
+</html>

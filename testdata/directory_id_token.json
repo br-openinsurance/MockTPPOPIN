@@ -1,0 +1,22 @@
+{
+  "aud":  "fec2fd24-6b2e-4c96-9786-771595a33bff",
+  "iss": "https://directory.local",
+  "nonce": "gXGldLyaaty",
+  "sub": "admin",
+  "trust_framework_profile": {
+    "basic_information": {
+      "status": "Active",
+      "user_email": "admin@mail.com"
+    },
+    "certification_manager": false,
+    "org_access_details": {
+      "4b75db2e-a0c0-4359-a077-684e88fa695c": {
+        "org_admin": false,
+        "organisation_name": "Mock OPIN"
+      }
+    },
+    "super_user": false,
+    "system_user": false
+  },
+  "txn": "q0RwM_vzkv39zoa0nTJDDaJm_VHpHLzSheB7waKB-tT"
+}

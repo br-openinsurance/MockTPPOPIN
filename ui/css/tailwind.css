@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+.border-top-green {
+  border-top-color: #0F570D;
+}
+
+.text-green {
+  color: #0F570D;
+}
+
+.btn-directory {
+  background-color: #00990B;
+}
+
+.btn-directory:hover {
+  background-color: #0F570D;
+}
+
+.card:hover {
+  background-color: #f0fdf4;
+  border-color: #0F570D;
+}

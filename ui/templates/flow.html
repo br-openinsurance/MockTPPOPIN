@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flow - {{ .APIType }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+  <script src="/static/js/flow.js" nonce="{{ .Nonce }}"></script>
+  <script src="/static/js/log.js" nonce="{{ .Nonce }}"></script>
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-6" data-api-type="{{ .APIType }}" data-flow-id="{{ .FlowID }}">
+  <div class="max-w-6xl mx-auto">
+    {{if .Token}}
+    <h1 class="text-3xl font-bold text-[#0F570D] mb-4">Executar Fluxo</h1>
+    {{else}}
+    <h1 class="text-3xl font-bold text-[#0F570D] mb-4">Iniciar Fluxo</h1>
+    {{end}}
+
+    <div class="mb-4">
+      <div class="text-lg font-semibold text-[#0F570D]">
+        {{if eq .APIType "customers-personal"}}Compartilhamento de Dados Cadastrais do Cliente (Pessoa Física){{end}}
+        {{if eq .APIType "customers-business"}}Compartilhamento de Dados Cadastrais do Cliente (Pessoa Jurídica){{end}}
+        {{if eq .APIType "acceptance-and-branches-abroad"}}Acceptance And Branches Abroad Insurance Data Sharing{{end}}
+        {{if eq .APIType "auto"}}Auto Insurance Data Sharing{{end}}
+        {{if eq .APIType "insurance-capitalization-title"}}Capitalization Title Data Sharing{{end}}
+        {{if eq .APIType "insurance-financial-assistance"}}Financial Assistance Data Sharing{{end}}
+      </div>
+    </div>
+
+    {{if .Token}}
+    <div class="bg-white shadow rounded-lg p-6 space-y-6">
+      <p class="text-sm text-gray-600">Consentimento autorizado com sucesso! Consulte os dados disponíveis abaixo:</p>
+
+      {{if eq .APIType "customers-personal"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados de Identificação do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-personal-identification"
+            data-output-id="customers-personal-identification-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-personal-identification-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados de Qualificação do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-personal-qualification"
+            data-output-id="customers-personal-qualification-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-personal-qualification-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados Complementares do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-personal-additional-info"
+            data-output-id="customers-personal-additional-info-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-personal-additional-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+      {{if eq .APIType "customers-business"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados de Identificação do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-business-identification"
+            data-output-id="customers-business-identification-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-business-identification-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados de Qualificação do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-business-qualification"
+            data-output-id="customers-business-qualification-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-business-qualification-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Dados Complementares do Cliente</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/customers-business-additional-info"
+            data-output-id="customers-business-additional-info-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Consultar
+          </button>
+          <pre id="customers-business-additional-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+      {{if eq .APIType "auto"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Auto Insurance Policies</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/insurance-auto-policies"
+            data-output-id="insurance-auto-policies-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Request
+          </button>
+          <pre id="insurance-auto-policies-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Auto Insurance Policy Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-auto-policy-info"
+              data-output-id="insurance-auto-policy-info-data-output"
+              data-id-input="policy-info-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-info-data-id"
+                name="policy-info-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-auto-policy-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Auto Insurance Policy Premium Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-auto-policy-premium"
+              data-output-id="insurance-auto-policy-premium-data-output"
+              data-id-input="policy-premium-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-premium-data-id"
+                name="policy-premium-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-auto-policy-premium-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Auto Insurance Policy Claim Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-auto-policy-claim"
+              data-output-id="insurance-auto-policy-claim-data-output"
+              data-id-input="policy-claim-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-claim-data-id"
+                name="policy-claim-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-auto-policy-claim-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+      {{if eq .APIType "insurance-financial-assistance"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Financial Assistance Contracts</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/financial-assistance-contracts"
+            data-output-id="financial-assistance-contracts-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Request
+          </button>
+          <pre id="financial-assistance-contracts-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Financial Assistance Contract Info</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/financial-assistance-contract-info"
+              data-output-id="financial-assistance-contract-info-data-output"
+              data-id-input="contract-info-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="contract-info-data-id"
+                name="contract-info-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter contract ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="financial-assistance-contract-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Financial Assistance Contract Movements</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/financial-assistance-contract-movements"
+              data-output-id="financial-assistance-contract-movements-data-output"
+              data-id-input="contract-movements-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="contract-movements-data-id"
+                name="contract-movements-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter contract ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="financial-assistance-contract-movements-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+      {{if eq .APIType "housing"}}
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Housing Policies</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/housing"
+            data-output-id="housing-policies-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Request
+          </button>
+          <pre id="housing-policies-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      {{end}}
+
+      {{if eq .APIType "acceptance-and-branches-abroad"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Acceptance And Branches Abroad Policies</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/insurance-acceptance-and-branches-abroad-policies"
+            data-output-id="insurance-acceptance-and-branches-abroad-policies-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Request
+          </button>
+          <pre id="insurance-acceptance-and-branches-abroad-policies-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Acceptance and Branches Abroad Insurance Policy Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-acceptance-and-branches-abroad-policy-info"
+              data-output-id="insurance-acceptance-and-branches-abroad-policy-info-data-output"
+              data-id-input="policy-info-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-info-data-id"
+                name="policy-info-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-acceptance-and-branches-abroad-policy-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Acceptance and Branches Abroad Insurance Policy Premium Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-acceptance-and-branches-abroad-policy-premium"
+              data-output-id="insurance-acceptance-and-branches-abroad-policy-premium-data-output"
+              data-id-input="policy-premium-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-premium-data-id"
+                name="policy-premium-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-acceptance-and-branches-abroad-policy-premium-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Acceptance and Branches Abroad Insurance Policy Claim Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-acceptance-and-branches-abroad-policy-claim"
+              data-output-id="insurance-acceptance-and-branches-abroad-policy-claim-data-output"
+              data-id-input="policy-claim-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="policy-claim-data-id"
+                name="policy-claim-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter policy ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-acceptance-and-branches-abroad-policy-claim-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+      {{if eq .APIType "insurance-capitalization-title"}}
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Capitalization Title Plans</h3>
+          <button
+            data-endpoint="/flows/{{.FlowID}}/insurance-capitalization-title-plans"
+            data-output-id="insurance-capitalization-title-plans-data-output"
+            class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            Request
+          </button>
+          <pre id="insurance-capitalization-title-plans-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Capitalization Title Plan Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-capitalization-title-plan-info"
+              data-output-id="insurance-capitalization-title-plan-info-data-output"
+              data-id-input="plan-info-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="plan-info-data-id"
+                name="plan-info-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter plan ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-capitalization-title-plan-info-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Capitalization Title Insurance Plan Events Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-capitalization-title-plan-events"
+              data-output-id="insurance-capitalization-title-plan-events-data-output"
+              data-id-input="plan-events-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="plan-events-data-id"
+                name="plan-events-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter plan ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-capitalization-title-plan-events-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-[#0F570D] mb-2">Capitalization Title Insurance Plan Settlements Data</h3>
+          <div class="flex items-center gap-4 mb-4">
+            <button
+              data-endpoint="/flows/{{.FlowID}}/insurance-capitalization-title-plan-settlements"
+              data-output-id="insurance-capitalization-title-plan-settlements-data-output"
+              data-id-input="plan-settlements-data-id"
+              class="api-call bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200">
+              Request
+            </button>
+            <div class="flex-1">
+              <input
+                type="text"
+                id="plan-settlements-data-id"
+                name="plan-settlements-data-id"
+                inputmode="text"
+                maxlength="60"
+                placeholder="Enter plan ID"
+                autocomplete="off"
+                class="block w-full border-2 border-gray-300 bg-gray-100 rounded-lg shadow-lg focus:ring-green focus:border-green text-lg px-4 py-3 transition duration-200"
+              />
+            </div>
+          </div>
+          <pre id="insurance-capitalization-title-plan-settlements-data-output" class="mt-2 bg-gray-100 p-3 rounded text-sm text-gray-800 overflow-x-auto whitespace-pre-wrap">{}</pre>
+        </div>
+      </div>
+      {{end}}
+
+    </div>
+    {{else}}
+    <div class="bg-white shadow rounded-lg p-6">
+      <p class="text-sm text-gray-500 mt-1">
+        Informe o CPF e, opcionalmente, o CNPJ para criar o novo pedido de consentimento.
+      </p>
+      <form id="flow-form" action="/flows/{{.FlowID}}" method="POST" class="space-y-4">
+        <div class="border border-gray-200 rounded-md p-4">
+          <div class="text-sm font-semibold text-gray-700 mb-2">Permissões:</div>
+          <ul id="perm-list" class="list-disc list-inside space-y-1"></ul>
+        </div>
+
+        <div id="perm-hidden"></div>
+
+        <div>
+          <label for="cpf" class="block text-sm font-medium text-gray-700">CPF *</label>
+          <input
+            type="text"
+            id="cpf"
+            name="cpf"
+            required
+            inputmode="numeric"
+            pattern="[0-9]{11}"
+            maxlength="11"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#0F570D] focus:border-[#0F570D]"
+            placeholder="00000000000"
+          />
+        </div>
+
+        <div>
+          <label for="cnpj" class="block text-sm font-medium text-gray-700">CNPJ (opcional)</label>
+          <input
+            type="text"
+            id="cnpj"
+            name="cnpj"
+            inputmode="numeric"
+            pattern="[0-9]{14}"
+            maxlength="14"
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-[#0F570D] focus:border-[#0F570D]"
+            placeholder="00000000000000"
+          />
+        </div>
+
+        <div class="flex justify-start">
+          <button
+            type="submit"
+            class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
+          >
+            Criar Consentimento
+          </button>
+        </div>
+      </form>
+    </div>
+    {{end}}
+
+    <section class="mt-8">
+      <div class="bg-white shadow rounded-lg p-6 space-y-6">
+        <div>
+          <h2 class="text-xl font-semibold text-[#0F570D]">Logs</h2>
+          <p class="text-gray-600 mb-8">Acompanhe aqui o histórico de execução do fluxo</p>
+        </div>
+
+        <div id="logs-container" class="border border-gray-200 rounded-md overflow-hidden">
+          <div class="grid grid-cols-12 h-96">
+            <!-- Sidebar -->
+            <aside id="logs-list" class="col-span-4 border-r border-gray-200 overflow-y-auto"></aside>
+            <!-- Detail -->
+            <main id="logs-detail" class="col-span-8 overflow-y-auto p-4 text-sm text-gray-800">Selecione um log.</main>
+          </div>
+        </div>
+
+        <div id="logs-controls" class="flex items-center gap-2">
+          <button id="logs-copy" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Copiar JSON</button>
+          <button id="logs-copy-all" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Copiar Tudo</button>
+          <button id="logs-reload" class="bg-gray-200 hover:bg-gray-300 text-sm px-3 py-1.5 rounded">Carregar Logs</button>
+          <span id="logs-status" class="text-xs text-gray-500"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-6">
+      <a href="/servers" class="text-sm text-[#0F570D] hover:underline">&larr; Voltar para os servidores de autorização</a>
+    </div>
+  </div>
+</body>
+</html>

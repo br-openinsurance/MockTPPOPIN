@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flows - {{ .AuthServer.Name }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/static/css/styles.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-[#0F570D] mb-2">Fluxos Disponíveis</h1>
+    <h2 class="text-lg text-gray-600 mb-6">Selecione o fluxo que deseja executar no servidor "{{ .AuthServer.Name }}"</h2>
+
+    {{$authServerID := .AuthServer.ID}}
+    {{$orgID := .AuthServer.OrgID}}
+
+    {{if .AuthServer.Resources}}
+      <div class="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {{range .AuthServer.Resources}}
+          {{if eq .Status "Active"}}
+              {{if eq .APIType "customers-personal"}}
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                  <input type="hidden" name="api_version" value="{{.Version}}">
+                  <input type="hidden" name="api_type" value="{{.APIType}}">
+                  <button type="submit"
+                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados Cadastrais do Cliente (Pessoa Física)</div>
+                    <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
+                  </button>
+                </form>
+              {{end}}
+
+              {{if eq .APIType "customers-business"}}
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                  <input type="hidden" name="api_version" value="{{.Version}}">
+                  <input type="hidden" name="api_type" value="{{.APIType}}">
+                  <button type="submit"
+                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados Cadastrais do Cliente (Pessoa Jurídica)</div>
+                    <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
+                  </button>
+                </form>
+              {{end}}
+          {{end}}
+        {{end}}
+      </div>
+    {{else}}
+      <div class="text-gray-500">Nenhum fluxo disponível para este servidor de autorização.</div>
+    {{end}}
+
+    <div class="mt-8">
+      <a href="/servers" class="text-sm text-[#0F570D] hover:underline">&larr; Voltar para os servidores de autorização</a>
+    </div>
+  </div>
+</body>
+</html>

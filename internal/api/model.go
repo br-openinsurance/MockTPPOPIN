@@ -3,7 +3,7 @@ package api
 import (
 	"net/http"
 
-	"github.com/br-openinsurance/MockTPPOPIN/internal/tpp"
+	"github.com/raidiam/mock-tpp/internal/tpp"
 )
 
 type Key string

@@ -186,3 +186,8 @@ func (s *MockStorage) fetch(_ context.Context, id string, item Item) error {
 func (s *MockStorage) fetchAll(_ context.Context, _ string, _ string, _ Items) error {
 	return nil
 }
+
+func (s *MockStorage) delete(_ context.Context, id string, item Item) error {
+	delete(s.store, id)
+	return nil
+}

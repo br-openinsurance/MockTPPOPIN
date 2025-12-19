@@ -63,3 +63,7 @@ func timeNow() time.Time {
 func timestampNow() int {
 	return int(time.Now().Unix())
 }
+
+func timestampNowMilli() int {
+	return int(time.Now().UnixMilli())
+}

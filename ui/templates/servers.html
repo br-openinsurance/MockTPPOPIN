@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="/static/css/styles.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 min-h-screen py-10 px-6">
+<body class="bg-gray-100 min-h-screen">
+  {{template "navbar"}}
   <div class="max-w-6xl mx-auto">
     <h1 class="text-3xl font-bold text-[#0F570D] mb-10">Servidores de Autorização</h1>
     <p class="text-gray-600 mb-8">Aqui está a lista de todos os servidores de autorização das organizações que você faz parte. Para iniciar, selecione qual servidor deseja usar</p>
@@ -43,23 +44,4 @@
     {{end}}
   </div>
 </body>
-<script nonce="{{ .Nonce }}">
-  (function () {
-  const backTarget = "/servers"; // where you want Back to land
-  const currentUrl = location.pathname + location.search + location.hash;
-
-  // Run only once per browser session
-  if (!sessionStorage.getItem("hist_rewired")) {
-    // Make the previous entry be your chosen page…
-    history.replaceState({ fromAuth: true }, "", backTarget);
-    // …then put the real current URL back on top.
-    history.pushState({ fromAuth: true }, "", currentUrl);
-    sessionStorage.setItem("hist_rewired", "1");
-  }
-
-  // If you also need to clean query params (code/state), do it *now* with replaceState,
-  // not before the two lines above.
-  // history.replaceState(history.state, "", cleanedUrl);
-})();
-</script>
 </html>

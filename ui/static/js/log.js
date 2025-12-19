@@ -8,7 +8,7 @@ function pretty(o) {
 
 function formatTimestamp(ts) {
   if (!ts) return '';
-  const date = new Date(ts * 1000); // Convert Unix timestamp to milliseconds
+  const date = new Date(ts);
   return date.toLocaleString('pt-BR', {
     timeZone: 'America/Sao_Paulo',
     year: 'numeric',

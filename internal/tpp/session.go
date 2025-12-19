@@ -27,6 +27,19 @@ func (t *TPP) InitSession(ctx context.Context) (session *Session, authURL string
 	return session, authURL, nil
 }
 
+func (t *TPP) FinalizeSession(ctx context.Context, session *Session) (endSessionURL string, err error) {
+	url, err := t.directoryEndSessionURL()
+	if err != nil {
+		return "", err
+	}
+
+	if err := t.deleteSession(ctx, session); err != nil {
+		return "", err
+	}
+
+	return url, nil
+}
+
 func (t *TPP) AuthorizeSession(ctx context.Context, session *Session, response string) error {
 	idTkn, err := t.directoryIDToken(ctx, response, session.CodeVerifier)
 	if err != nil {
@@ -58,6 +71,13 @@ func (t *TPP) Session(ctx context.Context, id string) (*Session, error) {
 func (t *TPP) saveSession(ctx context.Context, session *Session) error {
 	if err := t.storage.save(ctx, session); err != nil {
 		return fmt.Errorf("could not save session: %w", err)
+	}
+	return nil
+}
+
+func (t *TPP) deleteSession(ctx context.Context, session *Session) error {
+	if err := t.storage.delete(ctx, session.ID, session); err != nil {
+		return fmt.Errorf("could not delete session: %w", err)
 	}
 	return nil
 }

@@ -22,6 +22,7 @@ type Storage interface {
 	save(ctx context.Context, item Item) error
 	fetch(ctx context.Context, id string, item Item) error
 	fetchAll(ctx context.Context, key, value string, items Items) error
+	delete(ctx context.Context, id string, item Item) error
 }
 
 type storage struct {
@@ -90,6 +91,20 @@ func (s storage) fetchAll(ctx context.Context, index, value string, items Items)
 		o.TagKey = "json"
 	}); err != nil {
 		return fmt.Errorf("could not unmarshal items: %w", err)
+	}
+
+	return nil
+}
+
+func (s storage) delete(ctx context.Context, id string, item Item) error {
+	_, err := s.db.DeleteItem(ctx, &dynamodb.DeleteItemInput{
+		TableName: aws.String(item.TableName()),
+		Key: map[string]types.AttributeValue{
+			"id": &types.AttributeValueMemberS{Value: id},
+		},
+	})
+	if err != nil {
+		return fmt.Errorf("could not marshal item: %w", err)
 	}
 
 	return nil

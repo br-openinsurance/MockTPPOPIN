@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/br-openinsurance/MockTPPOPIN/internal/jwtutil"
 	"github.com/go-jose/go-jose/v4"
 	"github.com/go-jose/go-jose/v4/jwt"
 	"github.com/google/uuid"
+	"github.com/raidiam/mock-tpp/internal/jwtutil"
 )
 
 const (
@@ -43,6 +43,20 @@ func (t *TPP) directoryAuthURL(ctx context.Context, scopes string) (uri, codeVer
 	query.Set("redirect_uri", t.directoryRedirectURI)
 	authURL.RawQuery = query.Encode()
 	return authURL.String(), codeVerifier, nil
+}
+
+func (t *TPP) directoryEndSessionURL() (uri string, err error) {
+	openIDConfig, err := t.directoryOpenIDConfig()
+	if err != nil {
+		return "", err
+	}
+
+	authURL, _ := url.Parse(openIDConfig.EndSessionEndpoint)
+	query := authURL.Query()
+	query.Set("client_id", t.softwareID)
+	query.Set("post_logout_redirect_uri", t.directoryEndSessionURI)
+	authURL.RawQuery = query.Encode()
+	return authURL.String(), nil
 }
 
 func (t *TPP) directoryIDToken(ctx context.Context, response, codeVerifier string) (IDToken, error) {

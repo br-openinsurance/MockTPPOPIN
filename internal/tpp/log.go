@@ -24,7 +24,7 @@ func (t *TPP) log(ctx context.Context, level slog.Level, flowID, msg string, arg
 		FlowID:    flowID,
 		Message:   msg,
 		Args:      make(map[string]any),
-		CreatedAt: timestampNow(),
+		CreatedAt: timestampNowMilli(),
 	}
 	for _, arg := range args {
 		log.Args[arg.Key] = arg.Value.Any()

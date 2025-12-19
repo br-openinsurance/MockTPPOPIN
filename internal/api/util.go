@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/br-openinsurance/MockTPPOPIN/internal/tpp"
+	"github.com/raidiam/mock-tpp/internal/tpp"
 )
 
 func writeJSON(w http.ResponseWriter, data any, status int) {

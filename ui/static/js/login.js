@@ -1,5 +1,5 @@
 function directorySso() {
-  window.location.replace("/auth/directory");
+  window.location.href = "/auth/directory";
 }
 
 document.addEventListener("DOMContentLoaded", () => {

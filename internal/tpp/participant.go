@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/br-openinsurance/MockTPPOPIN/internal/jwtutil"
 	"github.com/go-jose/go-jose/v4"
 	"github.com/google/uuid"
+	"github.com/raidiam/mock-tpp/internal/jwtutil"
 )
 
 func (t *TPP) AuthServer(ctx context.Context, id, orgID string) (AuthServer, error) {

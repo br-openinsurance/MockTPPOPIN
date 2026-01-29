@@ -8,5 +8,6 @@
     "token_endpoint": "https://matls-directory.local/token"
   },
   "pushed_authorization_request_endpoint": "https://directory.local/par",
-  "token_endpoint": "https://directory.local/token"
+  "token_endpoint": "https://directory.local/token",
+  "end_session_endpoint": "https://directory.local/session/end"
 }

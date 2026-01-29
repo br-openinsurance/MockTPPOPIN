@@ -1,4 +1,4 @@
-module github.com/br-openinsurance/MockTPPOPIN
+module github.com/raidiam/mock-tpp
 
 go 1.24.2
 

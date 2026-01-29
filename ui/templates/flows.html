@@ -19,27 +19,27 @@
       <!-- Phase 2 -->
       <div class="mb-8">
         <h2 class="text-2xl font-semibold text-[#0F570D] mb-4">Fase 2: Compartilhamento de Dados</h2>
-        <div class="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style="grid-auto-rows: 1fr;">
           {{range .AuthServer.Resources}}
             {{if eq .Status "Active"}}
               {{if or (eq .APIType "resources") (eq .APIType "customers-personal") (eq .APIType "customers-business") (eq .APIType "auto") (eq .APIType "housing") (eq .APIType "rural") (eq .APIType "responsibility") (eq .APIType "transport") (eq .APIType "patrimonial") (eq .APIType "insurance-person") (eq .APIType "acceptance-and-branches-abroad") (eq .APIType "insurance-capitalization-title") (eq .APIType "insurance-financial-assistance") (eq .APIType "financial-risk") (eq .APIType "insurance-life-pension") (eq .APIType "insurance-pension-plan")}}
                 {{if eq .APIType "resources"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Recursos</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
                 </form>
               {{end}}
               {{if eq .APIType "customers-personal"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados Cadastrais do Cliente (Pessoa Física)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -47,11 +47,11 @@
               {{end}}
 
               {{if eq .APIType "customers-business"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados Cadastrais do Cliente (Pessoa Jurídica)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -59,11 +59,11 @@
               {{end}}
 
               {{if eq .APIType "auto"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Automóvel</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -71,11 +71,11 @@
               {{end}}
 
               {{if eq .APIType "housing"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Habitação</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -83,11 +83,11 @@
               {{end}}
 
               {{if eq .APIType "rural"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro Rural</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -95,11 +95,11 @@
               {{end}}
 
               {{if eq .APIType "responsibility"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Responsabilidade</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -107,11 +107,11 @@
               {{end}}
 
               {{if eq .APIType "transport"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Transporte</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -119,11 +119,11 @@
               {{end}}
 
               {{if eq .APIType "patrimonial"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Patrimônio</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -131,11 +131,11 @@
               {{end}}
 
               {{if eq .APIType "insurance-person"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Seguro de Pessoa</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -143,11 +143,11 @@
               {{end}}
 
               {{if eq .APIType "acceptance-and-branches-abroad"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Aceitação e Sucursal no Exterior</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -155,11 +155,11 @@
               {{end}}
 
               {{if eq .APIType "insurance-capitalization-title"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Título de Capitalização</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -167,11 +167,11 @@
               {{end}}
 
               {{if eq .APIType "insurance-financial-assistance"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Assistência Financeira</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -179,11 +179,11 @@
               {{end}}
 
               {{if eq .APIType "financial-risk"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Risco Financeiro</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -191,11 +191,11 @@
               {{end}}
 
               {{if eq .APIType "insurance-life-pension"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Pensão de Vida</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -203,11 +203,11 @@
               {{end}}
 
               {{if eq .APIType "insurance-pension-plan"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Compartilhamento de Dados de Plano de Pensão</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -221,16 +221,16 @@
 
       <!-- Phase 3 -->
       <div class="mb-8">
-        <h2 class="text-2xl font-semibold text-[#0F570D] mb-4">Fase 3</h2>
-        <div class="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <h2 class="text-2xl font-semibold text-[#0F570D] mb-4">Fase 3: Serviços</h2>
+        <div class="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" style="grid-auto-rows: 1fr;">
           {{range .AuthServer.Resources}}
             {{if eq .Status "Active"}}
               {{if eq .APIType "quote-auto"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Automóvel</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -238,11 +238,11 @@
               {{end}}
 
               {{if eq .APIType "quote-acceptance-and-branches-abroad"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Aceitação e Sucursal no Exterior</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -250,11 +250,11 @@
               {{end}}
 
               {{if eq .APIType "quote-patrimonial-business"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro Patrimonial (Empresa)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -262,11 +262,11 @@
               {{end}}
 
               {{if eq .APIType "quote-patrimonial-condominium"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro Patrimonial (Condomínio)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -274,11 +274,11 @@
               {{end}}
 
               {{if eq .APIType "quote-patrimonial-home"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro Patrimonial (Residência)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -286,11 +286,11 @@
               {{end}}
 
               {{if eq .APIType "quote-patrimonial-diverse-risks"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro Patrimonial (Riscos Diversos)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -298,11 +298,11 @@
               {{end}}
 
               {{if eq .APIType "quote-housing"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Habitacional</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -310,11 +310,11 @@
               {{end}}
 
               {{if eq .APIType "quote-financial-risk"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Risco Financeiro</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -323,11 +323,11 @@
 
 
               {{if eq .APIType "quote-responsibility"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Responsabilidade</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -335,11 +335,11 @@
               {{end}}
 
               {{if eq .APIType "quote-rural"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro Rural</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -347,11 +347,11 @@
               {{end}}
 
               {{if eq .APIType "quote-transport"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Transporte</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -359,11 +359,11 @@
               {{end}}
 
               {{if eq .APIType "quote-person-life"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Pessoas (Vida)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -371,11 +371,11 @@
               {{end}}
 
               {{if eq .APIType "quote-person-travel"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Seguro de Pessoas (Viagem)</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -383,33 +383,33 @@
               {{end}}
 
               {{if eq .APIType "quote-capitalization-title"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Cotação de Título de Capitalização</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
                 </form>
 
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="quote-capitalization-title-raffle">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
-                    <div class="text-lg font-semibold text-gray-800 mb-1">Pagamento deSorteio de Título de Capitalização</div>
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    <div class="text-lg font-semibold text-gray-800 mb-1">Pagamento de Sorteio de Título de Capitalização</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
                 </form>
               {{end}}
 
               {{if eq .APIType "contract-life-pension"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Contratação de Previdência Sobrevivência</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -417,11 +417,11 @@
               {{end}}
 
               {{if eq .APIType "dynamic-fields"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Campos Dinâmicos</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -429,11 +429,11 @@
               {{end}}
 
               {{if eq .APIType "endorsement"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Solicitação de Endosso</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -441,11 +441,11 @@
               {{end}}
 
               {{if eq .APIType "claim-notification-damages"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Notificação de Sinistro de Danos</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -453,11 +453,11 @@
               {{end}}
 
               {{if eq .APIType "claim-notification-person"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Notificação de Sinistro de Pessoa</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -465,11 +465,11 @@
               {{end}}
 
               {{if eq .APIType "withdrawal-capitalization-title"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Resgate de Título de Capitalização</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -477,11 +477,11 @@
               {{end}}
 
               {{if eq .APIType "withdrawal-pension"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Resgate de Previdência</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>
@@ -489,11 +489,11 @@
               {{end}}
 
               {{if eq .APIType "withdrawal-capitalization-title"}}
-                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows">
+                <form method="POST" action="/servers/{{$orgID}}/{{$authServerID}}/flows" class="h-full">
                   <input type="hidden" name="api_version" value="{{.Version}}">
                   <input type="hidden" name="api_type" value="{{.APIType}}">
                   <button type="submit"
-                    class="text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
+                    class="w-full h-full text-left card border border-gray-200 rounded-lg p-5 bg-white shadow-sm transition hover:shadow-md">
                     <div class="text-lg font-semibold text-gray-800 mb-1">Resgate de Título de Capitalização</div>
                     <div class="text-sm text-gray-500">Versão: {{.Version}}</div>
                   </button>

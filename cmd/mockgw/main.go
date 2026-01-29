@@ -123,6 +123,12 @@ func main() {
 			}`)
 		})
 
+		mux.HandleFunc("GET /session/end", func(w http.ResponseWriter, r *http.Request) {
+			log.Println("request directory session end")
+
+			http.Redirect(w, r, "https://mocktpp.local/login", http.StatusSeeOther)
+		})
+
 		return mux
 	}
 

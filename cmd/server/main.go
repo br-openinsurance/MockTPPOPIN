@@ -21,9 +21,9 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
 	"github.com/awslabs/aws-lambda-go-api-proxy/httpadapter"
-	"github.com/br-openinsurance/MockTPPOPIN/internal/api"
-	"github.com/br-openinsurance/MockTPPOPIN/internal/tpp"
 	"github.com/google/uuid"
+	"github.com/raidiam/mock-tpp/internal/api"
+	"github.com/raidiam/mock-tpp/internal/tpp"
 )
 
 type Environment string
@@ -106,6 +106,7 @@ func main() {
 		DirectoryIssuer:               DirectoryIssuer,
 		DirectorySoftwareStatementURL: DirectoryAPIHost + "/organisations/" + OrgID + "/softwarestatements/" + SoftwareID + "/assertion",
 		DirectoryRedirectURI:          Host + "/auth/directory/callback",
+		DirectoryEndSessionURI:        Host + "/login",
 		ParticipantsURL:               ParticipantsURL,
 		ParticipantRedirectURI:        Host + "/auth/callback",
 		JWTSignerID:                   TPPClientSignerID,
